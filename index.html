@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RecargaPana — Recargas de juegos y gift cards en Venezuela</title>
+<meta name="description" content="Recargas de Free Fire, PUBG, Roblox, gift cards y streaming. Paga en bolívares con Pago Móvil y pide por WhatsApp.">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--nav:#14213d;--nav2:#1f2f55;--acc:#ffb703;--acc-d:#f59e0b;--wa:#25d366;--bg:#f2f4f8;--card:#fff;--txt:#1d2433;--mut:#667085;--line:#e4e7ec}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Nunito,system-ui,sans-serif;background:var(--bg);color:var(--txt);line-height:1.45;padding-bottom:84px}
+button{font-family:inherit;cursor:pointer}
+a{color:inherit}
+/* header */
+header{background:var(--nav);color:#fff;position:sticky;top:0;z-index:20}
+.top{display:flex;align-items:center;gap:12px;padding:10px 16px;max-width:1200px;margin:auto}
+.logo{font-weight:800;font-size:1.35rem;white-space:nowrap;text-decoration:none}
+.logo span{color:var(--acc)}
+.sbox{flex:1;display:flex;background:#fff;border-radius:10px;overflow:hidden;min-width:0}
+.sbox input{flex:1;border:0;padding:11px 12px;font-size:1rem;font-family:inherit;min-width:0;outline:none}
+.sbox button{border:0;background:var(--acc);padding:0 16px;font-size:1.1rem}
+.cart{position:relative;background:none;border:0;color:#fff;font-size:1.5rem;padding:4px}
+.cart b{position:absolute;top:-4px;right:-6px;background:var(--acc);color:#111;font-size:.75rem;border-radius:999px;min-width:20px;height:20px;display:flex;align-items:center;justify-content:center}
+.cats{background:var(--nav2);overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+.cats::-webkit-scrollbar{display:none}
+.cats div{max-width:1200px;margin:auto;padding:8px 12px;display:flex;gap:6px}
+.cats button{background:none;border:1px solid transparent;color:#fff;border-radius:8px;padding:6px 12px;font-size:.92rem}
+.cats button.on{border-color:#fff;background:rgba(255,255,255,.1)}
+.rate{background:#fff8e6;border-bottom:1px solid #fde7b0;font-size:.88rem;text-align:center;padding:6px 12px;color:#7a5200}
+/* hero */
+.hero{max-width:1200px;margin:16px auto 0;padding:0 16px}
+.banner{background:linear-gradient(120deg,#14213d 0%,#3a0ca3 60%,#7209b7 100%);color:#fff;border-radius:18px;padding:26px 22px;display:flex;flex-direction:column;gap:10px}
+.banner h1{font-size:clamp(1.5rem,4.5vw,2.4rem);line-height:1.15;font-weight:800}
+.banner p{opacity:.9;max-width:560px}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.badges span{background:rgba(255,255,255,.14);border-radius:999px;padding:5px 12px;font-size:.85rem}
+/* sections */
+.sec{max-width:1200px;margin:22px auto 0;padding:0 16px}
+.sec h2{font-size:1.25rem;font-weight:800;margin-bottom:12px}
+.row{display:flex;gap:12px;overflow-x:auto;padding-bottom:6px;scroll-snap-type:x mandatory}
+.row .card{min-width:170px;max-width:170px;scroll-snap-align:start}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;cursor:pointer;transition:.15s}
+.card:hover{box-shadow:0 6px 18px rgba(20,33,61,.12);transform:translateY(-2px)}
+.tile{aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:2rem;letter-spacing:1px}
+.cb{padding:10px 12px 12px;display:flex;flex-direction:column;gap:3px;flex:1}
+.cb h3{font-size:.98rem;font-weight:800}
+.cb small{color:var(--mut);font-size:.8rem}
+.from{margin-top:auto;padding-top:6px}
+.from b{font-size:1.1rem}
+.from em{font-style:normal;color:var(--mut);font-size:.8rem;display:block}
+.empty{background:#fff;border:1px dashed var(--line);border-radius:14px;padding:26px;text-align:center;color:var(--mut)}
+.empty a{display:inline-block;margin-top:10px;background:var(--wa);color:#05310f;text-decoration:none;font-weight:800;padding:10px 16px;border-radius:10px}
+/* how / faq */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.step{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px}
+.step b{display:inline-flex;width:30px;height:30px;border-radius:50%;background:var(--acc);align-items:center;justify-content:center;margin-bottom:6px}
+.step p{color:var(--mut);font-size:.9rem}
+.pays{display:flex;flex-wrap:wrap;gap:8px}
+.pays span{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-weight:600}
+details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:8px}
+summary{font-weight:800;cursor:pointer}
+details p{color:var(--mut);margin-top:8px;font-size:.92rem}
+footer{max-width:1200px;margin:30px auto 0;padding:20px 16px;color:var(--mut);font-size:.82rem;text-align:center;border-top:1px solid var(--line)}
+/* floating WhatsApp */
+.fab{position:fixed;right:14px;bottom:14px;z-index:25;background:var(--wa);color:#05310f;text-decoration:none;font-weight:800;border-radius:999px;padding:13px 18px;box-shadow:0 6px 20px rgba(0,0,0,.25);display:flex;gap:8px;align-items:center}
+/* sheets */
+.ov{position:fixed;inset:0;background:rgba(10,15,30,.55);z-index:30;display:none}
+.ov.show{display:block}
+.sheet{position:fixed;z-index:40;background:#fff;left:0;right:0;bottom:0;max-height:92vh;border-radius:20px 20px 0 0;transform:translateY(105%);transition:.25s;display:flex;flex-direction:column}
+.sheet.show{transform:none}
+@media(min-width:760px){.sheet{left:50%;right:auto;bottom:auto;top:50%;width:520px;border-radius:20px;transform:translate(-50%,-40%);opacity:0;pointer-events:none}.sheet.show{transform:translate(-50%,-50%);opacity:1;pointer-events:auto}}
+.sh{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--line)}
+.sh h3{font-size:1.1rem}
+.sh button{border:0;background:#f2f4f7;border-radius:50%;width:34px;height:34px;font-size:1.2rem}
+.sbd{padding:16px;overflow:auto;display:flex;flex-direction:column;gap:14px}
+.ptile{border-radius:14px;height:110px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:2.4rem;font-weight:800}
+.desc{color:var(--mut);font-size:.93rem}
+.lbl{font-weight:800;font-size:.9rem;margin-bottom:6px;display:block}
+.pk{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pk button{background:#fff;border:2px solid var(--line);border-radius:12px;padding:10px;text-align:left}
+.pk button b{display:block;font-size:.92rem}
+.pk button span{color:var(--mut);font-size:.82rem}
+.pk button.on{border-color:var(--acc-d);background:#fffbeb}
+input.f{width:100%;border:1px solid #cfd4dc;border-radius:10px;padding:12px;font-size:1rem;font-family:inherit}
+.qty{display:flex;align-items:center;gap:10px}
+.qty button{width:38px;height:38px;border-radius:10px;border:1px solid var(--line);background:#fff;font-size:1.2rem}
+.tot{display:flex;justify-content:space-between;align-items:baseline;background:#f8f9fb;border-radius:12px;padding:12px}
+.tot b{font-size:1.3rem}
+.btn{border:0;border-radius:12px;padding:14px;font-weight:800;font-size:1rem;width:100%;text-align:center;text-decoration:none;display:block}
+.btn.wa{background:var(--wa);color:#05310f}
+.btn.y{background:var(--acc);color:#111}
+.btn.g{background:#f2f4f7;color:var(--txt)}
+.err{color:#d92d20;font-size:.88rem;font-weight:600}
+.ci{display:flex;justify-content:space-between;gap:10px;border-bottom:1px dashed var(--line);padding-bottom:10px}
+.ci small{color:var(--mut);display:block}
+.ci button{border:0;background:none;color:#d92d20;font-weight:700}
+.pm{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.pm button{border:2px solid var(--line);background:#fff;border-radius:10px;padding:9px 4px;font-size:.85rem;font-weight:700}
+.pm button.on{border-color:var(--acc-d);background:#fffbeb}
+.pinfo{background:#f8f9fb;border-radius:12px;padding:12px;white-space:pre-line;font-size:.9rem}
+.toast{position:fixed;left:50%;bottom:80px;transform:translateX(-50%);background:#111;color:#fff;padding:10px 16px;border-radius:999px;font-weight:700;opacity:0;transition:.2s;z-index:50;pointer-events:none}
+.toast.show{opacity:1}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="top">
+    <a class="logo" href="#" id="logo">Recarga<span>Pana</span></a>
+    <form class="sbox" id="sform"><input id="q" type="search" placeholder="¿Qué buscas? Free Fire, Robux, PSN…" autocomplete="off"><button aria-label="Buscar">🔎</button></form>
+    <button class="cart" id="openCart" aria-label="Carrito">🛒<b id="count">0</b></button>
+  </div>
+  <nav class="cats"><div id="cats"></div></nav>
+</header>
+<div class="rate" id="rate"></div>
+
+<section class="hero" id="hero">
+  <div class="banner">
+    <h1 id="slogan"></h1>
+    <p>Elige tu juego o tarjeta, paga en bolívares o dólares y recibe tu recarga rápido. Todo se confirma por WhatsApp con una persona real.</p>
+    <div class="badges"><span>⚡ Entrega rápida</span><span>🔒 Sin pedir contraseñas</span><span>🇻🇪 Precios en Bs</span><span>💬 Atención por WhatsApp</span></div>
+  </div>
+</section>
+
+<section class="sec" id="popSec"><h2>🔥 Lo más pedido</h2><div class="row" id="pop"></div></section>
+<section class="sec"><h2 id="gridTitle">Todos los productos</h2><div class="grid" id="grid"></div></section>
+
+<section class="sec"><h2>¿Cómo comprar?</h2>
+  <div class="steps">
+    <div class="step"><b>1</b><h3>Elige</h3><p>Toca el producto y escoge el paquete.</p></div>
+    <div class="step"><b>2</b><h3>Escribe tu ID</h3><p>Tu ID de jugador o el correo donde recibes el código.</p></div>
+    <div class="step"><b>3</b><h3>Pide por WhatsApp</h3><p>Se abre el chat con tu pedido escrito. Solo dale enviar.</p></div>
+    <div class="step"><b>4</b><h3>Paga y listo</h3><p>Te damos los datos de pago, mandas el comprobante y recibes tu recarga.</p></div>
+  </div>
+</section>
+
+<section class="sec"><h2>Métodos de pago</h2><div class="pays" id="pays"></div></section>
+
+<section class="sec"><h2>Preguntas frecuentes</h2>
+  <details><summary>¿Cuánto tarda la recarga?</summary><p id="faqEntrega"></p></details>
+  <details><summary>¿Necesitan mi contraseña?</summary><p>No. Para los juegos solo usamos tu ID de jugador. Para las tarjetas te enviamos el código.</p></details>
+  <details><summary>¿El precio en bolívares cambia?</summary><p>Los precios base están en dólares. El monto en Bs se calcula con la tasa del día que ves arriba.</p></details>
+  <details><summary>¿No encuentras lo que buscas?</summary><p>Escríbenos por WhatsApp: si existe, te lo conseguimos.</p></details>
+  <details><summary>¿Horario de atención?</summary><p id="faqHorario"></p></details>
+</section>
+
+<footer id="foot"></footer>
+
+<a class="fab" id="fab" target="_blank" rel="noopener">💬 WhatsApp</a>
+
+<div class="ov" id="ov"></div>
+<div class="sheet" id="pSheet" role="dialog" aria-modal="true"><div class="sh"><h3 id="pTitle"></h3><button data-close>×</button></div><div class="sbd" id="pBody"></div></div>
+<div class="sheet" id="cSheet" role="dialog" aria-modal="true"><div class="sh"><h3>Tu carrito</h3><button data-close>×</button></div><div class="sbd" id="cBody"></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* =========================================================
+   CONFIGURACIÓN DE TU TIENDA — edita solo esta parte
+   ========================================================= */
+const TIENDA = {
+  nombre: "RecargaPana",
+  eslogan: "Recargas y tarjetas de juegos al toque, pagando en bolívares",
+  whatsapp: "584120000000",   // ← TU número: 58 + número sin el 0 (0412-1234567 → 584121234567)
+  tasa: 245.00,               // ← Bs por dólar. Actualízala cada día.
+  horario: "Todos los días, de 8:00 a. m. a 10:00 p. m.",
+  entrega: "Normalmente entre 5 y 30 minutos después de confirmar tu pago.",
+  pagos: ["📱 Pago Móvil", "🏦 Transferencia", "🟡 Binance USDT", "💵 Zelle", "💲 Efectivo $"]
+};
+
+const CATEGORIAS = [
+  { id: "movil",  nombre: "Juegos móviles", icono: "📱" },
+  { id: "pc",     nombre: "PC y consola",   icono: "🎮" },
+  { id: "gift",   nombre: "Gift cards",     icono: "🎁" },
+  { id: "stream", nombre: "Streaming",      icono: "📺" }
+];
+
+/* Para agregar un producto: copia un bloque { ... }, pégalo y cámbialo.
+   precio en $ · pide = dato que necesitas del cliente · popular = sale en "Lo más pedido" */
+const PRODUCTOS = [
+  { id:"freefire", nombre:"Free Fire", cat:"movil", popular:true, ini:"FF", color:"#ff5a1f", pide:"ID de jugador",
+    desc:"Diamantes directo a tu cuenta con tu ID. No necesitamos tu contraseña.",
+    paquetes:[["100 Diamantes",1.2],["310 Diamantes",3.5],["520 Diamantes",5.8],["1.060 Diamantes",11.5],["2.180 Diamantes",23],["Pase Booyah",4]] },
+  { id:"pubg", nombre:"PUBG Mobile", cat:"movil", popular:true, ini:"PG", color:"#c9971a", pide:"ID de jugador",
+    desc:"UC para PUBG Mobile cargados por ID.", paquetes:[["60 UC",1.1],["325 UC",5.2],["660 UC",10.3],["1.800 UC",26]] },
+  { id:"mlbb", nombre:"Mobile Legends", cat:"movil", popular:true, ini:"ML", color:"#2f7ae5", pide:"ID + Zona",
+    desc:"Diamantes para Mobile Legends. Necesitamos tu ID y tu zona.", paquetes:[["86 Diamantes",1.6],["172 Diamantes",3.1],["429 Diamantes",7.5],["878 Diamantes",15]] },
+  { id:"codm", nombre:"Call of Duty Mobile", cat:"movil", ini:"CD", color:"#34495e", pide:"UID de jugador",
+    desc:"COD Points para Call of Duty Mobile.", paquetes:[["80 CP",1.2],["420 CP",5.5],["880 CP",10.8]] },
+  { id:"genshin", nombre:"Genshin Impact", cat:"movil", ini:"GI", color:"#7a3fe4", pide:"UID + Servidor",
+    desc:"Cristales Génesis y Bendición Lunar.", paquetes:[["60 Cristales",1.1],["330 Cristales",5.3],["Bendición Lunar",5.3]] },
+  { id:"roblox", nombre:"Roblox", cat:"pc", popular:true, ini:"RB", color:"#d63031", pide:"Usuario de Roblox",
+    desc:"Robux para tu cuenta de Roblox.", paquetes:[["400 Robux",5.5],["800 Robux",10.5],["1.700 Robux",21.5]] },
+  { id:"fortnite", nombre:"Fortnite", cat:"pc", ini:"FN", color:"#8e24aa", pide:"Usuario de Epic Games",
+    desc:"V-Bucks para Fortnite en cualquier plataforma.", paquetes:[["1.000 V-Bucks",9.5],["2.800 V-Bucks",24]] },
+  { id:"psn", nombre:"PlayStation Store", cat:"gift", popular:true, ini:"PS", color:"#0052b4", pide:"Correo o WhatsApp para el código",
+    desc:"Tarjeta de regalo PlayStation (región EE. UU.). Recibes el código por WhatsApp o correo.", paquetes:[["$10",11],["$25",27],["$50",53.5]] },
+  { id:"xbox", nombre:"Xbox y Game Pass", cat:"gift", ini:"XB", color:"#128c12", pide:"Correo o WhatsApp para el código",
+    desc:"Tarjetas Xbox y Game Pass Ultimate.", paquetes:[["$10",11],["$25",27],["Game Pass Ultimate 1 mes",19]] },
+  { id:"steam", nombre:"Steam Wallet", cat:"gift", ini:"ST", color:"#1b2838", pide:"Correo o WhatsApp para el código",
+    desc:"Saldo para tu cartera de Steam.", paquetes:[["$5",5.8],["$10",11.2],["$20",22]] },
+  { id:"googleplay", nombre:"Google Play", cat:"gift", ini:"GP", color:"#0f9d58", pide:"Correo o WhatsApp para el código",
+    desc:"Saldo de Google Play para apps y juegos.", paquetes:[["$5",5.8],["$10",11.2],["$25",27.5]] },
+  { id:"netflix", nombre:"Netflix", cat:"stream", ini:"NF", color:"#c4060f", pide:"Correo o WhatsApp para el código",
+    desc:"Tarjeta de regalo de Netflix.", paquetes:[["Tarjeta $15",16.5],["Tarjeta $30",32.5]] },
+  { id:"spotify", nombre:"Spotify Premium", cat:"stream", ini:"SP", color:"#1aa34a", pide:"Correo o WhatsApp para el código",
+    desc:"Tarjeta de regalo de Spotify Premium.", paquetes:[["1 mes",6.5],["3 meses",18]] }
+];
+/* ================= fin de la configuración ================= */
+
+const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fUsd=n=>"$"+n.toFixed(2);
+const fBs=n=>"Bs "+(n*TIENDA.tasa).toLocaleString("es-VE",{minimumFractionDigits:2,maximumFractionDigits:2});
+const wa=t=>`https://wa.me/${TIENDA.whatsapp}?text=${encodeURIComponent(t)}`;
+const norm=s=>s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
+let cat="todo", carrito=[];
+try{carrito=JSON.parse(localStorage.getItem("rp_cart")||"[]")}catch(e){}
+const save=()=>{try{localStorage.setItem("rp_cart",JSON.stringify(carrito))}catch(e){} $("#count").textContent=carrito.reduce((a,c)=>a+c.qty,0);};
+
+function toast(t){const e=$("#toast");e.textContent=t;e.classList.add("show");setTimeout(()=>e.classList.remove("show"),1400);}
+
+/* textos generales */
+document.title=`${TIENDA.nombre} — Recargas de juegos y gift cards en Venezuela`;
+$("#logo").innerHTML=TIENDA.nombre.replace(/(Pana)$/,"<span>$1</span>");
+$("#slogan").textContent=TIENDA.eslogan;
+$("#rate").innerHTML=`💱 Tasa del día: <b>${TIENDA.tasa.toLocaleString("es-VE",{minimumFractionDigits:2})} Bs/$</b> · ${esc(TIENDA.horario)}`;
+$("#pays").innerHTML=TIENDA.pagos.map(p=>`<span>${esc(p)}</span>`).join("");
+$("#faqEntrega").textContent=TIENDA.entrega; $("#faqHorario").textContent=TIENDA.horario;
+$("#foot").innerHTML=`© ${new Date().getFullYear()} ${esc(TIENDA.nombre)} · Venezuela · Pedidos por WhatsApp: +${TIENDA.whatsapp}<br>Las marcas de los juegos pertenecen a sus dueños. Somos revendedores independientes.`;
+$("#fab").href=wa(`Hola ${TIENDA.nombre} 👋, quiero hacer una compra.`);
+
+/* categorías */
+function renderCats(){
+  $("#cats").innerHTML=[{id:"todo",nombre:"Todo",icono:"🛍️"},...CATEGORIAS].map(c=>`<button class="${c.id===cat?'on':''}" data-c="${c.id}">${c.icono} ${esc(c.nombre)}</button>`).join("");
+  $$("#cats button").forEach(b=>b.onclick=()=>{cat=b.dataset.c;$("#q").value="";renderCats();renderGrid();$("#gridTitle").scrollIntoView({behavior:"smooth",block:"center"});});
+}
+const card=p=>{const min=Math.min(...p.paquetes.map(k=>k[1]));const c=CATEGORIAS.find(x=>x.id===p.cat);
+  return `<div class="card" data-p="${p.id}" tabindex="0"><div class="tile" style="background:linear-gradient(135deg,${p.color},${p.color}bb)">${esc(p.ini)}</div>
+  <div class="cb"><h3>${esc(p.nombre)}</h3><small>${c?esc(c.nombre):""}</small><div class="from"><em>Desde</em><b>${fUsd(min)}</b> <em>${fBs(min)}</em></div></div></div>`;};
+function bindCards(root){root.querySelectorAll(".card").forEach(el=>{el.onclick=()=>openProduct(el.dataset.p);el.onkeydown=e=>{if(e.key==="Enter")openProduct(el.dataset.p)};});}
+function renderGrid(){
+  const q=norm($("#q").value.trim());
+  const list=PRODUCTOS.filter(p=>(cat==="todo"||p.cat===cat)&&(!q||norm(p.nombre+" "+p.desc+" "+p.paquetes.map(k=>k[0]).join(" ")).includes(q)));
+  const cn=CATEGORIAS.find(c=>c.id===cat);
+  $("#gridTitle").textContent=q?`Resultados para “${$("#q").value.trim()}”`:(cn?cn.nombre:"Todos los productos");
+  $("#popSec").style.display=(q||cat!=="todo")?"none":"";
+  $("#grid").innerHTML=list.length?list.map(card).join(""):
+    `<div class="empty" style="grid-column:1/-1">No lo tenemos en la lista… ¡pero pregúntanos!<br><a target="_blank" rel="noopener" href="${wa(`Hola, ¿tienen ${$("#q").value.trim()||"este producto"}?`)}">💬 Preguntar por WhatsApp</a></div>`;
+  bindCards($("#grid"));
+}
+$("#pop").innerHTML=PRODUCTOS.filter(p=>p.popular).map(card).join(""); bindCards($("#pop"));
+$("#q").oninput=renderGrid;
+$("#sform").onsubmit=e=>{e.preventDefault();$("#q").blur();$("#gridTitle").scrollIntoView({behavior:"smooth",block:"center"});};
+
+/* hojas */
+function show(id){$("#ov").classList.add("show");$(id).classList.add("show");}
+function hide(){$("#ov").classList.remove("show");$$(".sheet").forEach(s=>s.classList.remove("show"));}
+$("#ov").onclick=hide; $$("[data-close]").forEach(b=>b.onclick=hide);
+document.addEventListener("keydown",e=>{if(e.key==="Escape")hide();});
+
+/* ficha de producto */
+function openProduct(id){
+  const p=PRODUCTOS.find(x=>x.id===id); let sel=0, qty=1;
+  $("#pTitle").textContent=p.nombre;
+  $("#pBody").innerHTML=`
+    <div class="ptile" style="background:linear-gradient(135deg,${p.color},${p.color}bb)">${esc(p.ini)}</div>
+    <p class="desc">${esc(p.desc)}</p>
+    <div><span class="lbl">1. Elige el paquete</span><div class="pk" id="pk">${p.paquetes.map((k,i)=>`<button data-i="${i}" class="${i===0?'on':''}"><b>${esc(k[0])}</b><span>${fUsd(k[1])} · ${fBs(k[1])}</span></button>`).join("")}</div></div>
+    <div><span class="lbl">2. ${esc(p.pide)}</span><input class="f" id="dato" placeholder="Escribe tu ${esc(p.pide.toLowerCase())}"></div>
+    <div class="qty"><span class="lbl" style="margin:0">Cantidad</span><button id="mn">−</button><b id="qv">1</b><button id="pl">+</button></div>
+    <div class="tot"><span>Total</span><span><b id="tu"></b> <small id="tb"></small></span></div>
+    <p class="err" id="perr"></p>
+    <a class="btn wa" id="buy" target="_blank" rel="noopener">💬 Pedir ahora por WhatsApp</a>
+    <button class="btn y" id="add">🛒 Agregar al carrito</button>`;
+  const upd=()=>{const t=p.paquetes[sel][1]*qty;$("#tu").textContent=fUsd(t);$("#tb").textContent=fBs(t);$("#qv").textContent=qty;
+    $("#buy").href=wa(`Hola ${TIENDA.nombre} 👋, quiero comprar:\n\n• ${p.nombre} — ${p.paquetes[sel][0]} x${qty}\n  ${p.pide}: ${$("#dato").value.trim()}\n\nTotal: ${fUsd(t)} / ${fBs(t)} (tasa ${TIENDA.tasa})\n\n¿Me pasan los datos de pago?`);};
+  $$("#pk button").forEach(b=>b.onclick=()=>{sel=+b.dataset.i;$$("#pk button").forEach(x=>x.classList.toggle("on",x===b));upd();});
+  $("#mn").onclick=()=>{if(qty>1)qty--;upd();}; $("#pl").onclick=()=>{qty++;upd();};
+  $("#dato").oninput=()=>{$("#perr").textContent="";upd();};
+  const need=()=>{if(!$("#dato").value.trim()){$("#perr").textContent=`Escribe tu ${p.pide.toLowerCase()} para continuar.`;$("#dato").focus();return false;}return true;};
+  $("#buy").onclick=e=>{if(!need())e.preventDefault();};
+  $("#add").onclick=()=>{if(!need())return;carrito.push({nombre:p.nombre,paq:p.paquetes[sel][0],precio:p.paquetes[sel][1],qty,pide:p.pide,dato:$("#dato").value.trim()});save();hide();toast("Agregado al carrito ✔");};
+  upd(); show("#pSheet");
+}
+
+/* carrito */
+function openCart(){
+  const b=$("#cBody");
+  if(!carrito.length){b.innerHTML=`<p class="desc" style="text-align:center;padding:20px 0">Tu carrito está vacío.</p><button class="btn g" data-close2>Seguir viendo productos</button>`;b.querySelector("[data-close2]").onclick=hide;show("#cSheet");return;}
+  const tot=carrito.reduce((a,c)=>a+c.precio*c.qty,0);
+  b.innerHTML=carrito.map((c,i)=>`<div class="ci"><div><b>${esc(c.nombre)}</b><small>${esc(c.paq)} x${c.qty} · ${fUsd(c.precio*c.qty)}</small><small>${esc(c.pide)}: ${esc(c.dato)}</small></div><button data-del="${i}">Quitar</button></div>`).join("")+`
+    <div class="tot"><span>Total</span><span><b>${fUsd(tot)}</b> <small>${fBs(tot)}</small></span></div>
+    <div><span class="lbl">¿Cómo vas a pagar?</span><div class="pm" id="pm">${TIENDA.pagos.map((p,i)=>`<button data-m="${esc(p)}" class="${i===0?'on':''}">${esc(p)}</button>`).join("")}</div></div>
+    <div><span class="lbl">Tu nombre</span><input class="f" id="nom" placeholder="Nombre y apellido"></div>
+    <a class="btn wa" id="send" target="_blank" rel="noopener">💬 Enviar pedido por WhatsApp</a>
+    <button class="btn g" id="vaciar">Vaciar carrito</button>`;
+  let metodo=TIENDA.pagos[0];
+  const link=()=>{$("#send").href=wa(`Hola ${TIENDA.nombre} 👋, soy ${$("#nom").value.trim()||"un cliente"}. Quiero este pedido:\n\n`+
+    carrito.map((c,i)=>`${i+1}. ${c.nombre} — ${c.paq} x${c.qty} (${fUsd(c.precio*c.qty)})\n   ${c.pide}: ${c.dato}`).join("\n")+
+    `\n\nTotal: ${fUsd(tot)} / ${fBs(tot)} (tasa ${TIENDA.tasa})\nPago: ${metodo}\n\n¿Me pasan los datos de pago?`);};
+  b.querySelectorAll("[data-del]").forEach(x=>x.onclick=()=>{carrito.splice(+x.dataset.del,1);save();openCart();});
+  b.querySelectorAll("#pm button").forEach(x=>x.onclick=()=>{metodo=x.dataset.m;b.querySelectorAll("#pm button").forEach(y=>y.classList.toggle("on",y===x));link();});
+  $("#nom").oninput=link; $("#vaciar").onclick=()=>{carrito=[];save();openCart();};
+  link(); show("#cSheet");
+}
+$("#openCart").onclick=openCart;
+
+renderCats(); renderGrid(); save();
+</script>
+</body>
+</html>
