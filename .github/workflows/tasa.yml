@@ -1,0 +1,43 @@
+name: Actualizar tasa
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"   # cada 30 minutos
+  workflow_dispatch:           # botón "Run workflow" para correrlo a mano
+
+permissions:
+  contents: write
+
+jobs:
+  tasa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Leer tasa Binance de DoliToday
+        run: |
+          python3 - <<'EOF'
+          import re, json, urllib.request, datetime
+          req = urllib.request.Request("https://dolitoday.com/", headers={
+              "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36",
+              "Accept-Language": "es-VE,es;q=0.9"})
+          html = urllib.request.urlopen(req, timeout=30).read().decode("utf-8", "ignore")
+          m = re.search(r'id="bh-price"[^>]*>.*?</span>\s*([\d.]+,\d+)', html, re.S)
+          if not m:
+              raise SystemExit("No se encontró la tasa en DoliToday")
+          tasa = float(m.group(1).replace(".", "").replace(",", "."))
+          if not (10 < tasa < 1000000):
+              raise SystemExit(f"Tasa fuera de rango: {tasa}")
+          json.dump({"tasa": tasa,
+                     "fuente": "DoliToday - Binance USDT P2P",
+                     "actualizado": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds")},
+                    open("tasa.json", "w"), ensure_ascii=False)
+          print("Tasa:", tasa)
+          EOF
+
+      - name: Guardar tasa.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tasa.json
+          git diff --cached --quiet || (git commit -m "Tasa automática" && git push)
